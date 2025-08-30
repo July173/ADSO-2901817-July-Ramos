@@ -1,0 +1,25 @@
+Módulos y entidades
+
+module_security
+
+user, role, permission, person
+
+geolocation
+
+continent, country, department, city
+
+module_infrastructure
+
+airport, terminal, boarding_gate, runway, maintenance_facility
+
+module_managementFlight
+
+airline, aircraft, route, flight, flight_schedule, flight_status, crew_role, crew_member, crew_assignment
+
+passengers_and_services
+
+passenger, reservation, ticket, baggage, checkin
+
+parameterization
+
+aircraft_type, flight_type, ticket_class

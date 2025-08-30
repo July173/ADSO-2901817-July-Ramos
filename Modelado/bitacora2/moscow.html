@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap MVP - Sistema de Aerolínea</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .priority-section {
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .priority-header {
+            padding: 20px 30px;
+            color: white;
+            font-size: 1.4em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .must {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        }
+        
+        .should {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+        
+        .could {
+            background: linear-gradient(45deg, #16a085, #1abc9c);
+        }
+        
+        .wont {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+        
+        .priority-emoji {
+            font-size: 1.2em;
+        }
+        
+        .priority-content {
+            background: #f8f9fa;
+            padding: 0;
+        }
+        
+        .task-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .task-item {
+            padding: 15px 30px;
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        
+        .task-item:hover {
+            background: white;
+            transform: translateX(5px);
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .task-item:before {
+            content: "▶";
+            position: absolute;
+            left: 10px;
+            color: #bdc3c7;
+            transition: color 0.3s ease;
+        }
+        
+        .task-item:hover:before {
+            color: #3498db;
+        }
+        
+        .task-text {
+            margin-left: 10px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .priority-description {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .priority-header {
+                font-size: 1.2em;
+                padding: 15px 20px;
+            }
+            
+            .task-item {
+                padding: 12px 20px;
+            }
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid;
+        }
+        
+        .stat-card.must { border-top-color: #27ae60; }
+        .stat-card.should { border-top-color: #f39c12; }
+        .stat-card.could { border-top-color: #16a085; }
+        .stat-card.wont { border-top-color: #e74c3c; }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✈️ Roadmap MVP - Sistema de Aerolínea</h1>
+            <p>Plan de desarrollo para 16 semanas</p>
+        </div>
+        
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card must">
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Must Have</div>
+                </div>
+                <div class="stat-card should">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Should Have</div>
+                </div>
+                <div class="stat-card could">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Could Have</div>
+                </div>
+                <div class="stat-card wont">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Won't Have</div>
+                </div>
+            </div>
+            
+            <div class="priority-section">
+                <div class="priority-header must">
+                    <span class="priority-emoji">✅</span>
+                    <span>Must <span class="priority-description">(imprescindible para un MVP funcional en 16 semanas)</span></span>
+                </div>
+                <div class="priority-content">
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <div class="task-text">Definir el modelo ER completo con todas las entidades y relaciones.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear migración de base de datos para `user` con autenticación y campos auditables.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar autenticación con JWT y refresh tokens.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar control de acceso basado en roles y permisos (RBAC).</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Construir CRUD de `person` y enlace con `user`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `continent`, `country`, `department`, `city`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Cargar datos semilla para geografía (ISO).</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `airport`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `airline`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `aircraft_type` y `aircraft`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `route`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `flight_type`, `flight_status` y `flight`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar `flight_schedule`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `crew_role` y `crew_member`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar `crew_assignment`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `passenger`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `reservation`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `ticket_class` y `ticket`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar emisión de `ticket` a partir de `reservation`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `baggage`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar `checkin` online básico.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Diseñar API REST v1 con OpenAPI/Swagger.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Añadir paginación, ordenamiento y filtros en endpoints.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar validación y sanitización de entrada.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Construir pruebas unitarias básicas.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Configurar CI/CD básico (lint + tests).</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Contenerizar servicios con Docker y `docker-compose`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Documentación técnica mínima (modelo + API).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-header should">
+                    <span class="priority-emoji">🟡</span>
+                    <span>Should <span class="priority-description">(importante, pero puede ir después del MVP)</span></span>
+                </div>
+                <div class="priority-content">
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <div class="task-text">Validar políticas de contraseña y recuperación segura.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar búsqueda y filtros avanzados en geolocalización.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Crear CRUD de `terminal`, `boarding_gate`, `runway`, `maintenance_facility`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar validación de conflictos en `flight_schedule`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar selección de asientos en `reservation`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar política de equipaje según `ticket_class`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Generar código QR/barras para pase de abordar.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar reglas automáticas de `flight_status`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar auditoría en tablas.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar soft-delete.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Añadir índices compuestos.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Construir pruebas de integración.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar logs estructurados y trazabilidad.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Añadir endpoints `/health` y `/ready`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar rate limiting.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Añadir CORS configurable.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar caché para catálogos.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Preparar dataset semilla para QA.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-header could">
+                    <span class="priority-emoji">🟢</span>
+                    <span>Could <span class="priority-description">(nice to have, no bloquea el MVP)</span></span>
+                </div>
+                <div class="priority-content">
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <div class="task-text">Implementar proceso de reacomodación por vuelos cancelados.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar cálculo de tiempos de conexión.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar verificación de conflictos de `runway`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar mantenimiento preventivo de `aircraft`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar notificaciones a pasajeros (email/SMS).</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Internacionalización (i18n).</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Diseñar estrategia de versionado de API.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar backups automáticos.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar servicio de cálculo de tarifa base + impuestos.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar búsqueda de vuelos avanzada.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Implementar disponibilidad de asientos en tiempo real.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Endpoint para historial de `flight_status`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Verificación de identidad en checkin.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Monitoreo de tiempos de respuesta y alertas.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Retención/anonimización de datos personales.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Endpoints de reportes (`ocupación`, `puntualidad`, `equipaje`).</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Pruebas E2E completas.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Idempotencia en operaciones críticas.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Validación de huso horario.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Exportación CSV/JSON.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-header wont">
+                    <span class="priority-emoji">❌</span>
+                    <span>Won't <span class="priority-description">(fuera del alcance de 16 semanas)</span></span>
+                </div>
+                <div class="priority-content">
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <div class="task-text">Implementar rebooking avanzado con integración externa.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Notificaciones reales con proveedor SMS/email.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Módulo avanzado de mantenimiento preventivo de `aircraft`.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Reportes BI avanzados y dashboards en tiempo real.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Integración con pasarelas de pago.</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-text">Multi-tenant / despliegues multi-aerolínea.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

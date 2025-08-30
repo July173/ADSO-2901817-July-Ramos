@@ -1,0 +1,215 @@
+# Estructura de Base de Datos - Sistema de Vuelos
+
+##  Módulo 1: Geolocalización
+
+### 1. Continent
+- **continent_id** (Primary Key)
+- **name**
+
+**Relación:** Los continentes agrupan países.
+
+### 2. Country
+- **country_id** (Primary Key)
+- **name**
+- **continent_id** (Foreign Key: Continent)
+
+**Relación:** Un país pertenece a un continente.
+
+### 3. State
+- **state_id** (Primary Key)
+- **name**
+- **country_id** (Foreign Key: Country)
+
+**Relación:** Un estado/provincia pertenece a un país.
+
+### 4. City
+- **city_id** (Primary Key)
+- **name**
+- **state_id** (Foreign Key: State)
+
+**Relación:** Una ciudad pertenece a un estado/provincia.
+
+### 5. Airport
+- **airport_id** (Primary Key)
+- **name**
+- **city_id** (Foreign Key: City)
+
+**Relación:** Un aeropuerto está ubicado en una ciudad.
+
+---
+
+## Módulo 2: Gestión de Usuarios y Seguridad
+
+### 6. User
+- **user_id** (Primary Key)
+- **username**
+- **password_hash**
+- **customer_id** (Foreign Key: Customer)
+
+**Relación:** Un usuario está asociado a un cliente.
+
+### 7. Role
+- **role_id** (Primary Key)
+- **name**
+- **description**
+
+**Relación:** Define roles del sistema (admin, empleado, etc.).
+
+### 8. Permission
+- **permission_id** (Primary Key)
+- **name**
+- **description**
+
+**Relación:** Define permisos específicos del sistema.
+
+### 9. User_Role
+- **user_role_id** (Primary Key)
+- **user_id** (Foreign Key: User)
+- **role_id** (Foreign Key: Role)
+
+**Relación:** Tabla de unión que asigna roles a usuarios (relación muchos a muchos).
+
+### 10. Role_Permission
+- **role_permission_id** (Primary Key)
+- **role_id** (Foreign Key: Role)
+- **permission_id** (Foreign Key: Permission)
+
+**Relación:** Tabla de unión que asigna permisos a roles (relación muchos a muchos).
+
+---
+
+## Módulo 3: Gestión de Vuelos
+
+### 11. Airline
+- **airline_id** (Primary Key)
+- **name**
+- **country_id** (Foreign Key: Country)
+
+**Relación:** Una aerolínea está registrada en un país.
+
+### 12. Flight
+- **flight_id** (Primary Key)
+- **flight_number**
+- **departure_date**
+- **arrival_date**
+- **departure_airport_id** (Foreign Key: Airport)
+- **arrival_airport_id** (Foreign Key: Airport)
+- **flight_type**
+
+**Relación:** Un vuelo tiene un aeropuerto de salida y uno de llegada.
+
+### 13. Customer
+- **customer_id** (Primary Key)
+- **first_name**
+- **last_name**
+- **email**
+- **phone_number**
+- **address**
+- **passport_number**
+
+**Relación:** Almacena información de los clientes que realizan reservas.
+
+### 14. Booking
+- **booking_id** (Primary Key)
+- **customer_id** (Foreign Key: Customer)
+- **flight_id** (Foreign Key: Flight)
+- **booking_date**
+- **status**
+
+**Relación:** Una reserva conecta un cliente con un vuelo.
+
+### 15. Ticket
+- **ticket_id** (Primary Key)
+- **booking_id** (Foreign Key: Booking)
+- **seat_number**
+- **ticket_price**
+
+**Relación:** Un ticket pertenece a una reserva específica.
+
+### 16. FlightSchedule
+- **schedule_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **departure_time**
+- **arrival_time**
+- **status**
+
+**Relación:** Define los horarios programados para un vuelo.
+
+### 17. BaggageAllowance
+- **baggage_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **max_weight**
+- **max_items**
+
+**Relación:** Define las políticas de equipaje para un vuelo específico.
+
+### 18. CheckIn
+- **checkin_id** (Primary Key)
+- **booking_id** (Foreign Key: Booking)
+- **checkin_time**
+- **boarding_pass_number**
+
+**Relación:** Registra el check-in de una reserva específica.
+
+---
+
+## Módulo 4: Parametrización y Gestión Operativa
+
+### 19. FlightDiscount
+- **discount_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **discount_percentage**
+- **valid_from**
+- **valid_to**
+
+**Relación:** Define descuentos aplicables a vuelos específicos.
+
+### 20. FlightCancellation
+- **cancellation_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **cancellation_date**
+- **reason**
+
+**Relación:** Registra cancelaciones de vuelos con sus motivos.
+
+### 21. FlightNotification
+- **notification_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **notification_date**
+- **message**
+
+**Relación:** Almacena notificaciones relacionadas con vuelos específicos.
+
+### 22. FlightLayover
+- **layover_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **layover_time**
+
+**Relación:** Define escalas para vuelos específicos.
+
+### 23. FlightLog
+- **log_id** (Primary Key)
+- **flight_id** (Foreign Key: Flight)
+- **log_date**
+- **event_description**
+
+**Relación:** Registra eventos y cambios en el historial de vuelos.
+
+### 24. Flight_Payment
+- **payment_id** (Primary Key)
+- **booking_id** (Foreign Key: Booking)
+- **payment_date**
+- **amount**
+- **payment_method**
+
+**Relación:** Registra los pagos realizados para reservas específicas.
+
+---
+
+## Resumen de Relaciones Principales
+
+1. **Jerarquía Geográfica:** Continent → Country → State → City → Airport
+2. **Seguridad:** User ↔ Role ↔ Permission (relaciones muchos a muchos)
+3. **Flujo de Reservas:** Customer → Booking → Ticket
+4. **Operaciones de Vuelo:** Flight conecta con Airport, Customer, y múltiples tablas operativas
+5. **Gestión Financiera:** Booking → Flight_Payment

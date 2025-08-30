@@ -1,0 +1,33 @@
+ Módulo 1: Geolocalización
+### 1. Continent
+### 2. Country
+### 3. State
+### 4. City
+### 5. Airport
+
+## Módulo 2: Gestión de Usuarios y Seguridad
+### 6. User
+### 7. Role
+### 8. Permission.
+### 9. User_Role
+### 10. Role_Permission
+
+
+## Módulo 3: Gestión de Vuelos
+### 11. Airline
+### 12. Flight
+### 13. Customer
+### 14. Booking
+### 15. Ticket
+### 16. FlightSchedule
+### 17. BaggageAllowance
+### 18. CheckIn
+
+
+## Módulo 4: Parametrización y Gestión Operativa
+### 19. FlightDiscount
+### 20. FlightCancellation
+### 21. FlightNotification
+### 22. FlightLayover
+### 23. FlightLog
+### 24. FlightPayment
