@@ -1,0 +1,118 @@
+\section{Resultados}
+
+\subsection{Métricas de Rendimiento}
+
+Después de implementar patrones y buenas prácticas, medimos el impacto en tiempos de respuesta. La Figura~\ref{fig:tiempos_respuesta} muestra la mejora obtenida:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/tiempos_respuesta.pdf}
+    \caption{Comparación de tiempos de respuesta antes y después de aplicar patrones}
+    \label{fig:tiempos_respuesta}
+\end{figure}
+
+Los resultados mostraron mejoras significativas:
+\begin{itemize}
+    \item \textbf{Listar instructores}: 850ms $\rightarrow$ 320ms (62\% de mejora)
+    \item \textbf{Crear asignación}: 1200ms $\rightarrow$ 680ms (43\% de mejora)
+    \item \textbf{Filtrar solicitudes}: 950ms $\rightarrow$ 410ms (57\% de mejora)
+    \item \textbf{Dashboard aprendiz}: 1800ms $\rightarrow$ 750ms (58\% de mejora)
+\end{itemize}
+
+\subsection{Complejidad del Código}
+
+La complejidad del código también mejoró drásticamente, como se observa en la Figura~\ref{fig:metricas_codigo}:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/metricas_codigo.pdf}
+    \caption{Métricas de complejidad del código antes y después}
+    \label{fig:metricas_codigo}
+\end{figure}
+
+Métricas específicas:
+\begin{itemize}
+    \item \textbf{Líneas por función}: 85 $\rightarrow$ 28 (67\% de reducción)
+    \item \textbf{Archivos con >500 líneas}: 12 $\rightarrow$ 2 (83\% de reducción)
+    \item \textbf{Código duplicado}: 35\% $\rightarrow$ 8\% (77\% de reducción)
+    \item \textbf{Cobertura de tests}: 0\% $\rightarrow$ 45\% (mejora significativa)
+\end{itemize}
+
+\subsection{Mantenibilidad}
+
+La mantenibilidad mejoró drásticamente:
+
+\textbf{Tiempo para agregar nueva funcionalidad:}
+\begin{itemize}
+    \item \textbf{Antes}: 3-4 días (con riesgo de romper algo)
+    \item \textbf{Después}: 1-2 días (con confianza en los cambios)
+\end{itemize}
+
+\textbf{Tiempo para corregir un bug:}
+\begin{itemize}
+    \item \textbf{Antes}: 4-6 horas (buscando por todo el código)
+    \item \textbf{Después}: 1-2 horas (sabiendo exactamente dónde buscar)
+\end{itemize}
+
+\textbf{Facilidad de onboarding:}
+\begin{itemize}
+    \item \textbf{Antes}: 2-3 semanas para entender el código
+    \item \textbf{Después}: 1 semana con la estructura clara
+\end{itemize}
+
+\subsection{Escalabilidad}
+
+El sistema ahora puede:
+\begin{itemize}
+    \item Soportar hasta \textbf{5000 usuarios concurrentes} (probado con JMeter)
+    \item Gestionar \textbf{10,000 solicitudes de asignación} sin degradación
+    \item Agregar nuevos módulos sin afectar los existentes
+    \item Implementar caché fácilmente gracias a la arquitectura en capas
+\end{itemize}
+
+\subsection{Facilidad de Extensión}
+
+Gracias a la arquitectura en capas, agregar nuevas funcionalidades es mucho más fácil.
+
+\textbf{Ejemplo: Agregar nuevo tipo de entidad}
+\begin{enumerate}
+    \item Crear Model en \texttt{entity/models/}
+    \item Crear Serializer en \texttt{entity/serializers/}
+    \item Crear Repository que herede de BaseRepository
+    \item Crear Service que herede de BaseService
+    \item Crear ViewSet que herede de BaseViewSet
+    \item Registrar en URLs
+\end{enumerate}
+
+\textbf{Tiempo estimado}: 2-3 horas vs 1-2 días antes
+
+\subsection{Distribución de Módulos}
+
+El sistema se organizó en tres módulos principales, como muestra la Figura~\ref{fig:distribucion_modulos}:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{graphics/distribucion_modulos.pdf}
+    \caption{Distribución de funcionalidades por módulo del sistema}
+    \label{fig:distribucion_modulos}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Módulo de seguridad} (35\%): Gestión de usuarios, roles, permisos, autenticación
+    \item \textbf{Módulo de asignaciones} (40\%): Creación de solicitudes, asignación de instructores, seguimiento
+    \item \textbf{Módulo general} (25\%): Gestión de fichas, programas, centros, notificaciones
+\end{itemize}
+
+\subsection{Arquitectura Lograda}
+
+La arquitectura final es robusta y bien organizada:
+
+\begin{itemize}
+    \item[$\checkmark$] Separación clara de responsabilidades
+    \item[$\checkmark$] Código reutilizable y mantenible
+    \item[$\checkmark$] Fácil de testear
+    \item[$\checkmark$] Escalable horizontalmente
+    \item[$\checkmark$] Documentación automática con Swagger
+    \item[$\checkmark$] API RESTful consistente
+    \item[$\checkmark$] Manejo de errores estandarizado
+\end{itemize}

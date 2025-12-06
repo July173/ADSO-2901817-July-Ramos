@@ -1,0 +1,167 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{pinero2021buenas}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=7b76c80a96ccbd4522a1a1cb2edd5eca}{%
+           family={Piñero\bibnamedelima González},
+           familyi={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Maidelyn},
+           giveni={M\bibinitperiod}}}%
+        {{hash=6f0ef802420dbecf0e570e8e5ebfaf7a}{%
+           family={Marin\bibnamedelima Diaz},
+           familyi={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Aymara},
+           giveni={A\bibinitperiod}}}%
+        {{hash=adfda981fde84ccc12663b8a1d4e21eb}{%
+           family={Trujillo\bibnamedelima Casañola},
+           familyi={T\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Yaimí},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=492f2957dd54fad7fc3b2b9ea2060149}{%
+           family={Buedo\bibnamedelima Hidalgo},
+           familyi={B\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Denys},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Universidad de las Ciencias Informáticas, Cuba}%
+      }
+      \strng{namehash}{89d07645c497edc975da904b7c7a5d2e}
+      \strng{fullhash}{925e25753a68455d8203f8715017f8d2}
+      \strng{fullhashraw}{925e25753a68455d8203f8715017f8d2}
+      \strng{bibnamehash}{925e25753a68455d8203f8715017f8d2}
+      \strng{authorbibnamehash}{925e25753a68455d8203f8715017f8d2}
+      \strng{authornamehash}{89d07645c497edc975da904b7c7a5d2e}
+      \strng{authorfullhash}{925e25753a68455d8203f8715017f8d2}
+      \strng{authorfullhashraw}{925e25753a68455d8203f8715017f8d2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista Cubana de Ciencias Informáticas}
+      \field{number}{1}
+      \field{title}{Buenas prácticas para prevenir los riesgos de la eficiencia del desempeño en los productos de software}
+      \field{volume}{15}
+      \field{year}{2021}
+    \endentry
+    \entry{mercado2019revision}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a19a8652c3396d397833f784da9ac02d}{%
+           family={Mercado},
+           familyi={M\bibinitperiod},
+           given={Víctor},
+           giveni={V\bibinitperiod}}}%
+        {{hash=8c12ae033edc11f53b15d10cbd972a3a}{%
+           family={Zapata},
+           familyi={Z\bibinitperiod},
+           given={Julián},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Universidad de Medellín}%
+      }
+      \list{location}{1}{%
+        {Colombia}%
+      }
+      \strng{namehash}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{fullhash}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{fullhashraw}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{bibnamehash}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{authorbibnamehash}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{authornamehash}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{authorfullhash}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \strng{authorfullhashraw}{7bc48d5d6e75e2c6eee600aeee9f2cbe}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Especialización en Ingeniería de Software}
+      \field{title}{Revisión de herramientas y buenas prácticas implementadas para la gestión de la calidad en proyectos de desarrollo de software con metodologías ágiles}
+      \field{year}{2019}
+    \endentry
+    \entry{martin2008clean}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=6f41df64eb0dc4855be70172368604c2}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Robert\bibnamedelima C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{6f41df64eb0dc4855be70172368604c2}
+      \strng{fullhash}{6f41df64eb0dc4855be70172368604c2}
+      \strng{fullhashraw}{6f41df64eb0dc4855be70172368604c2}
+      \strng{bibnamehash}{6f41df64eb0dc4855be70172368604c2}
+      \strng{authorbibnamehash}{6f41df64eb0dc4855be70172368604c2}
+      \strng{authornamehash}{6f41df64eb0dc4855be70172368604c2}
+      \strng{authorfullhash}{6f41df64eb0dc4855be70172368604c2}
+      \strng{authorfullhashraw}{6f41df64eb0dc4855be70172368604c2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780132350884}
+      \field{title}{Clean Code: A Handbook of Agile Software Craftsmanship}
+      \field{year}{2008}
+    \endentry
+    \entry{espinosa2024gestion}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5661b6eb1b8d91dcca6f916d1fe8956e}{%
+           family={Espinosa},
+           familyi={E\bibinitperiod},
+           given={R.\bibnamedelimi D.\bibnamedelimi C.},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=054f1a376550c06fb60ca84637f75026}{%
+           family={Eraso},
+           familyi={E\bibinitperiod},
+           given={J.\bibnamedelimi C.\bibnamedelimi C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{510b67d1c413079e322e7fc48bc57476}
+      \strng{fullhash}{510b67d1c413079e322e7fc48bc57476}
+      \strng{fullhashraw}{510b67d1c413079e322e7fc48bc57476}
+      \strng{bibnamehash}{510b67d1c413079e322e7fc48bc57476}
+      \strng{authorbibnamehash}{510b67d1c413079e322e7fc48bc57476}
+      \strng{authornamehash}{510b67d1c413079e322e7fc48bc57476}
+      \strng{authorfullhash}{510b67d1c413079e322e7fc48bc57476}
+      \strng{authorfullhashraw}{510b67d1c413079e322e7fc48bc57476}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{REVISTA DELOS}
+      \field{number}{62}
+      \field{title}{Gestión de tecnología y buenas prácticas empresa de desarrollo de software colombiana}
+      \field{volume}{17}
+      \field{year}{2024}
+      \field{pages}{e3210}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.55905/rdelosv17.n62-117
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

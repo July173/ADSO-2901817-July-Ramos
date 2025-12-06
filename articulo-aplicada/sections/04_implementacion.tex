@@ -1,0 +1,184 @@
+\section{Implementación}
+
+\subsection{Estructura del Proyecto Backend}
+
+El backend quedó organizado con una estructura modular clara:
+
+\begin{itemize}
+    \item \textbf{apps/}: Módulos de la aplicación (general, security, assign)
+    \begin{itemize}
+        \item \textbf{entity/}: Modelos y serializers (DTOs)
+        \item \textbf{repositories/}: Acceso a datos
+        \item \textbf{services/}: Lógica de negocio
+        \item \textbf{views/}: ViewSets (API endpoints)
+    \end{itemize}
+    \item \textbf{core/}: Configuración del proyecto
+    \begin{itemize}
+        \item \textbf{base/}: Clases base reutilizables
+        \item \textbf{settings.py}: Configuración Django
+        \item \textbf{urls.py}: Rutas principales
+    \end{itemize}
+\end{itemize}
+
+Esta estructura nos permite:
+\begin{itemize}
+    \item \textbf{Modularidad}: Cada app es independiente
+    \item \textbf{Escalabilidad}: Fácil agregar nuevos módulos
+    \item \textbf{Mantenibilidad}: Código organizado por responsabilidades
+\end{itemize}
+
+\subsection{Estructura del Proyecto Frontend}
+
+El frontend también siguió una arquitectura en capas:
+
+\begin{itemize}
+    \item \textbf{src/Api/}: Configuración y servicios API
+    \begin{itemize}
+        \item \textbf{config/}: Endpoints centralizados
+        \item \textbf{Services/}: Funciones para llamar API
+        \item \textbf{types/}: Interfaces TypeScript
+    \end{itemize}
+    \item \textbf{src/components/}: Componentes React reutilizables
+    \item \textbf{src/hook/}: Custom hooks con lógica de negocio
+    \item \textbf{src/pages/}: Páginas principales de la aplicación
+\end{itemize}
+
+\subsection{Flujo de una Petición}
+
+Cuando un usuario hace una petición, el flujo es el siguiente:
+
+\begin{enumerate}
+    \item Cliente (React) hace petición HTTP
+    \item Django recibe en ViewSet
+    \item ViewSet valida con Serializer
+    \item ViewSet llama al Service
+    \item Service ejecuta lógica de negocio
+    \item Service usa Repository para datos
+    \item Repository consulta el Model/BD
+    \item Respuesta sube por las capas
+    \item ViewSet serializa respuesta
+    \item Cliente recibe JSON
+\end{enumerate}
+
+\subsection{Ejemplo Práctico: Crear Tipo de Contrato}
+
+A continuación mostramos un ejemplo real de cómo implementamos la creación de un tipo de contrato siguiendo nuestra arquitectura:
+
+\textbf{1. ViewSet (recibe petición):}
+
+\ifminted
+\begin{minted}[linenos,fontsize=\small]{python}
+def create(self, request, *args, **kwargs):
+    service = self.service_class()
+    instance, error = service.create_type_contract(
+        request.data
+    )
+    if error:
+        return Response(
+            {"detail": error}, 
+            status=400
+        )
+    serializer = self.get_serializer(instance)
+    return Response(
+        serializer.data, 
+        status=201
+    )
+\end{minted}
+\else
+\begin{lstlisting}[language=Python,basicstyle=\small]
+def create(self, request, *args, **kwargs):
+    service = self.service_class()
+    instance, error = service.create_type_contract(
+        request.data
+    )
+    if error:
+        return Response(
+            {"detail": error}, 
+            status=400
+        )
+    serializer = self.get_serializer(instance)
+    return Response(
+        serializer.data, 
+        status=201
+    )
+\end{lstlisting}
+\fi
+
+\textbf{2. Service (lógica de negocio):}
+
+\ifminted
+\begin{minted}[linenos,fontsize=\small]{python}
+def create_type_contract(self, validated_data):
+    name = validated_data.get('name', '').strip()
+    if not name:
+        return None, "El nombre es requerido."
+    
+    # Verificar duplicados
+    exists = TypeContract.objects.filter(
+        name__iexact=name, 
+        delete_at__isnull=True
+    ).exists()
+    
+    if exists:
+        return None, "Ya existe ese contrato."
+    
+    serializer = TypeContractSerializer(
+        data=validated_data
+    )
+    if serializer.is_valid():
+        instance = serializer.save()
+        return instance, None
+    return None, serializer.errors
+\end{minted}
+\else
+\begin{lstlisting}[language=Python,basicstyle=\small]
+def create_type_contract(self, validated_data):
+    name = validated_data.get('name', '').strip()
+    if not name:
+        return None, "El nombre es requerido."
+    
+    # Verificar duplicados
+    exists = TypeContract.objects.filter(
+        name__iexact=name, 
+        delete_at__isnull=True
+    ).exists()
+    
+    if exists:
+        return None, "Ya existe ese contrato."
+    
+    serializer = TypeContractSerializer(
+        data=validated_data
+    )
+    if serializer.is_valid():
+        instance = serializer.save()
+        return instance, None
+    return None, serializer.errors
+\end{lstlisting}
+\fi
+
+\subsection{Custom Hooks en React}
+
+Para el frontend, creamos custom hooks que encapsulan lógica reutilizable. Estos hooks nos permiten:
+\begin{itemize}
+    \item Reutilizar lógica en múltiples componentes
+    \item Mantener el código limpio
+    \item Facilitar el testing
+    \item Separar lógica de presentación
+\end{itemize}
+
+\subsection{Comparación Antes/Después}
+
+La Figura~\ref{fig:comparacion_codigo} muestra la diferencia clara entre nuestro código antes y después de aplicar los patrones:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/comparacion_codigo.pdf}
+    \caption{Comparación de complejidad del código antes y después de aplicar patrones}
+    \label{fig:comparacion_codigo}
+\end{figure}
+
+\textbf{Antes}: Todo mezclado en la vista (validación, consulta a BD, lógica de negocio, respuesta).
+
+\textbf{Después}: ViewSet limpio que solo coordina, Service con lógica de negocio, Repository con acceso a datos.
+
+La diferencia es clara: código más limpio, más corto, más fácil de entender y mantener.

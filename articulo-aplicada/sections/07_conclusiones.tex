@@ -1,0 +1,81 @@
+\section{Conclusiones}
+
+\subsection{Resumen de Hallazgos}
+
+Este proyecto demostró que \textbf{aplicar patrones de diseño y buenas prácticas no es opcional si quieres software de calidad}. Los principales hallazgos fueron:
+
+\begin{enumerate}
+    \item \textbf{La arquitectura en capas funciona}: Separar responsabilidades en Model, Serializer, Repository, Service y ViewSet hace el código más mantenible, testeable y escalable.
+    
+    \item \textbf{Los patrones de diseño son herramientas, no dogmas}: Repository, DTO y Service Layer nos ayudaron específicamente con nuestros problemas. No aplicamos patrones por aplicarlos, sino porque resolvían problemas reales.
+    
+    \item \textbf{El refactoring es doloroso pero necesario}: Transformar código caótico en código limpio tomó tiempo y esfuerzo, pero el resultado valió totalmente la pena.
+    
+    \item \textbf{La calidad se mide en tiempo de desarrollo}: Un sistema bien diseñado permite agregar funcionalidades en horas en lugar de días.
+    
+    \item \textbf{Los números no mienten}: Reducción del 40-60\% en tiempos de respuesta, 67\% menos líneas por función, y 77\% menos código duplicado son resultados concretos y medibles.
+\end{enumerate}
+
+\subsection{Contribuciones}
+
+Este trabajo contribuye con:
+
+\begin{enumerate}
+    \item \textbf{Un caso de estudio real}: Mostramos cómo transformar un proyecto caótico en uno estructurado, con ejemplos concretos y código real del sistema de autogestión SENA.
+    
+    \item \textbf{Implementación práctica de patrones}: No solo teoría, sino implementación real de Repository, DTO y Service Layer en un proyecto de producción.
+    
+    \item \textbf{Métricas concretas}: Datos reales de rendimiento antes y después de aplicar buenas prácticas.
+    
+    \item \textbf{Guía para principiantes}: Este artículo puede servir como referencia para otros estudiantes o desarrolladores junior que enfrentan problemas similares.
+    
+    \item \textbf{Demostración del valor de las buenas prácticas}: Prueba tangible de que las buenas prácticas no son ``pérdida de tiempo'', sino una inversión que se paga sola.
+\end{enumerate}
+
+\subsection{Limitaciones}
+
+Reconocemos algunas limitaciones del trabajo:
+
+\begin{enumerate}
+    \item \textbf{Contexto específico}: Este es un proyecto educativo para el SENA, no un sistema con millones de usuarios. Los resultados pueden variar en contextos diferentes.
+    
+    \item \textbf{Cobertura de testing}: Aunque mejoramos, el 45\% de cobertura es insuficiente para un sistema crítico en producción.
+    
+    \item \textbf{Equipo pequeño}: Con un equipo más grande, quizás hubieran surgido otros problemas o soluciones diferentes.
+    
+    \item \textbf{Tiempo limitado}: Algunos aspectos como CI/CD completo o monitoreo avanzado quedaron pendientes.
+    
+    \item \textbf{Experiencia del equipo}: Como desarrolladores en formación, probablemente hay mejoras que no identificamos por falta de experiencia.
+\end{enumerate}
+
+\subsection{Trabajos Futuros}
+
+Para seguir mejorando, proponemos:
+
+\begin{enumerate}
+    \item \textbf{Incrementar cobertura de tests}: Llegar al 80\% con tests unitarios e integración.
+    
+    \item \textbf{Implementar CI/CD completo}: Pipeline automático con tests, linting, y deployment.
+    
+    \item \textbf{Optimización avanzada}: Implementar caché con Redis, indexación en BD, lazy loading en frontend.
+    
+    \item \textbf{Monitoreo en producción}: Herramientas como Sentry para tracking de errores y métricas de performance.
+    
+    \item \textbf{Documentación completa}: Documentar arquitectura, decisiones de diseño y guías de contribución.
+    
+    \item \textbf{Microservicios}: Evaluar si sería beneficioso dividir el monolito en microservicios.
+    
+    \item \textbf{GraphQL}: Considerar GraphQL en lugar de REST para consultas más flexibles.
+    
+    \item \textbf{Progressive Web App}: Hacer el frontend una PWA para funcionalidad offline.
+\end{enumerate}
+
+\subsection{Reflexión Final}
+
+Este proyecto nos enseñó que \textbf{el desarrollo de software no es solo hacer que funcione, sino hacerlo bien}. Como dijo Martin~\cite{martin2008clean}: ``No basta con que el código funcione; debe ser limpio''.
+
+Al principio, pensábamos que las buenas prácticas y los patrones de diseño eran cosas que solo importaban en empresas grandes o proyectos complejos. Estábamos equivocados. Desde el día uno, aplicar buenas prácticas hace la diferencia.
+
+Si tuviéramos que dar un consejo a otros desarrolladores que están empezando, sería: \textbf{No esperes a que el proyecto se vuelva inmantenible para pensar en arquitectura}. Empieza bien desde el principio, aprende patrones de diseño, sigue principios SOLID, escribe código limpio. Te va a ahorrar semanas (o meses) de dolores de cabeza.
+
+Finalmente, este proyecto nos demostró que es posible desarrollar software de calidad siguiendo buenas prácticas, y que el esfuerzo invertido en hacerlo bien se recupera con creces en mantenibilidad, escalabilidad y satisfacción al trabajar.

@@ -1,0 +1,78 @@
+\section{Discusión}
+
+\subsection{Impacto de las Buenas Prácticas}
+
+La aplicación de buenas prácticas tuvo un impacto mucho mayor del que esperábamos al inicio:
+
+\textbf{Desarrollo más rápido}: Aunque al principio pareció que íbamos más lento (porque teníamos que pensar en la arquitectura), a mediano plazo el desarrollo se aceleró. Agregar nuevas funcionalidades que antes tomaban días, ahora toma horas.
+
+\textbf{Menos bugs}: La separación en capas hizo que los bugs fueran más fáciles de encontrar. Si hay un error en una consulta, sabemos que está en el Repository. Si es lógica de negocio, está en el Service. Antes, el error podía estar en cualquier lado.
+
+\textbf{Trabajo en equipo}: Con una estructura clara, varios desarrolladores pueden trabajar simultáneamente sin pisarse. Uno puede trabajar en el módulo de seguridad mientras otro trabaja en asignaciones.
+
+\textbf{Confianza al hacer cambios}: Antes, cualquier cambio daba miedo. ¿Voy a romper algo? ¿Qué va a pasar? Ahora, con la arquitectura en capas y las responsabilidades claras, sabemos exactamente qué va a afectar un cambio.
+
+\subsection{Patrones de Diseño: ¿Valieron la Pena?}
+
+\textbf{Repository Pattern}: Definitivamente sí. Centralizar el acceso a datos nos permitió:
+\begin{itemize}
+    \item Optimizar consultas en un solo lugar
+    \item Cambiar la base de datos si fuera necesario (solo afecta repositorios)
+    \item Mockear datos para testing
+    \item Tener control total sobre las operaciones con BD
+\end{itemize}
+
+\textbf{DTO Pattern (Serializers)}: Fundamental. Nos protegió de exponer datos sensibles y nos dio validación automática. Además, la documentación de Swagger se genera automáticamente.
+
+\textbf{Service Layer}: Fue el cambio que más impacto tuvo. Separar la lógica de negocio de las vistas hizo que:
+\begin{itemize}
+    \item Las vistas sean súper simples (solo reciben y responden)
+    \item La lógica se pueda reutilizar
+    \item Los tests sean más fáciles
+    \item El código sea más legible
+\end{itemize}
+
+\subsection{Qué Mejoró}
+
+\begin{enumerate}
+    \item \textbf{Claridad del código}: Cualquier desarrollador puede entender la estructura en minutos.
+    \item \textbf{Rendimiento}: Las consultas optimizadas redujeron los tiempos de respuesta significativamente.
+    \item \textbf{Seguridad}: Al usar Serializers, controlamos exactamente qué datos se exponen y cuáles no.
+    \item \textbf{Documentación}: Swagger genera documentación automática de todos los endpoints.
+    \item \textbf{Mantenibilidad}: Hacer cambios ya no da miedo.
+\end{enumerate}
+
+\subsection{Qué Se Podría Optimizar}
+
+Aunque mejoramos mucho, todavía hay áreas que se pueden optimizar:
+
+\begin{enumerate}
+    \item \textbf{Testing}: Tenemos 45\% de cobertura, pero deberíamos llegar al 70-80\%.
+    \item \textbf{Caché}: Implementar Redis caché para consultas frecuentes podría mejorar aún más el rendimiento.
+    \item \textbf{Optimización de queries}: Algunas consultas todavía pueden optimizarse con \texttt{select\_related} y \texttt{prefetch\_related}.
+    \item \textbf{Frontend}: El frontend podría beneficiarse de un estado global (Redux o Context API) en lugar de solo hooks locales.
+    \item \textbf{Logging}: Implementar un sistema de logs más robusto para monitoreo en producción.
+    \item \textbf{CI/CD}: Automatizar completamente el deployment con pruebas automáticas.
+\end{enumerate}
+
+\subsection{Lecciones Aprendidas}
+
+\begin{enumerate}
+    \item \textbf{Empezar bien es más barato que refactorizar}: Refactorizar código existente tomó el doble de tiempo que si hubiéramos empezado bien desde el inicio.
+    
+    \item \textbf{Los patrones no son complicados}: Al principio parecían complicados, pero una vez que los entiendes, son bastante lógicos y naturales.
+    
+    \item \textbf{La documentación es clave}: Documentar mientras desarrollas es mucho más fácil que documentar después.
+    
+    \item \textbf{El código limpio se lee como prosa}: Como dice Martin~\cite{martin2008clean}, el buen código debería ser fácil de leer. Si no lo es, probablemente está mal diseñado.
+    
+    \item \textbf{Las buenas prácticas no ralentizan, aceleran}: Al principio pensábamos que nos iban a hacer más lentos, pero en realidad aceleraron el desarrollo.
+\end{enumerate}
+
+\subsection{Relación con Trabajos Previos}
+
+Nuestros resultados confirman lo que mencionan Piñero González et al.~\cite{pinero2021buenas} sobre la eficiencia del desempeño: aplicar buenas prácticas desde el inicio mejora significativamente los tiempos de respuesta y el uso de recursos.
+
+También coincidimos con Mercado \& Zapata~\cite{mercado2019revision} en que la gestión de calidad con metodologías ágiles facilita el desarrollo y reduce errores. La combinación de buenas prácticas + arquitectura limpia + revisión de código fue clave para nuestro éxito.
+
+Finalmente, como sugieren Espinosa \& Eraso~\cite{espinosa2024gestion}, la gestión adecuada de tecnología y buenas prácticas no solo mejora el producto, sino también la productividad del equipo y la satisfacción al trabajar.

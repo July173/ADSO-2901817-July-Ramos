@@ -1,0 +1,67 @@
+\section{Lo Que Otros Dicen (Trabajos Relacionados)}
+
+Aquí investigamos un poco para saber que no estábamos inventando nada. Ver lo que otros desarrolladores y equipos han hecho antes nos ayudó a no cometer los mismos errores.
+
+\subsection{Eficiencia del Desempeño}
+
+Piñero González et al.~\cite{pinero2021buenas} nos hicieron caer en cuenta de que \textbf{la eficiencia del sistema puede ser una ventaja competitiva}. Cuando tu aplicación responde rápido, los usuarios están más contentos y el producto tiene mayor calidad.
+
+En su investigación, identifican que la eficiencia del desempeño está relacionada con:
+\begin{itemize}
+    \item \textbf{Tiempos de respuesta} y procesamiento
+    \item \textbf{Tasas de rendimiento}
+    \item \textbf{Límites máximos} de funcionamiento
+    \item \textbf{Uso de recursos} (memoria, CPU, base de datos)
+\end{itemize}
+
+Esto nos hizo pensar en cómo estábamos manejando las consultas a la base de datos. Al principio, hacíamos consultas sin optimizar, sin índices, sin pensar en el rendimiento. Después, con el patrón Repository, pudimos centralizar y optimizar todas las consultas.
+
+\subsection{Gestión de Calidad con Metodologías Ágiles}
+
+Mercado \& Zapata~\cite{mercado2019revision} en su revisión sobre herramientas y buenas prácticas para la gestión de calidad en proyectos ágiles destacan que:
+
+\begin{itemize}
+    \item La \textbf{integración continua} mejora la detección temprana de errores
+    \item Las \textbf{revisiones de código} (code reviews) aumentan la calidad
+    \item La \textbf{documentación clara} facilita el mantenimiento
+    \item Los \textbf{tests automatizados} dan confianza al hacer cambios
+\end{itemize}
+
+Nosotros implementamos varias de estas prácticas:
+\begin{itemize}
+    \item Control de versiones con Git
+    \item Revisiones de código antes de integrar cambios
+    \item Documentación de endpoints con Swagger
+    \item Separación clara de responsabilidades
+\end{itemize}
+
+\subsection{Gestión de Tecnología y Buenas Prácticas}
+
+Espinosa \& Eraso~\cite{espinosa2024gestion} en su estudio sobre empresas de desarrollo de software colombianas resaltan que la gestión adecuada de tecnología y la aplicación de buenas prácticas son fundamentales para:
+
+\begin{itemize}
+    \item Mejorar la \textbf{productividad} del equipo
+    \item Reducir \textbf{costos de mantenimiento}
+    \item Aumentar la \textbf{satisfacción del cliente}
+    \item Facilitar la \textbf{escalabilidad} del negocio
+\end{itemize}
+
+En nuestro caso, al aplicar patrones y buenas prácticas, notamos que:
+\begin{itemize}
+    \item Agregar nuevas funcionalidades tomaba menos tiempo
+    \item Los bugs eran más fáciles de encontrar y corregir
+    \item El código era más fácil de entender para otros desarrolladores
+\end{itemize}
+
+\subsection{Patrones de Diseño}
+
+Durante el desarrollo investigamos sobre patrones ampliamente reconocidos en la industria:
+
+\begin{itemize}
+    \item \textbf{Repository Pattern}: Para separar la lógica de acceso a datos
+    \item \textbf{DTO Pattern}: Para transferir datos entre capas sin exponer modelos
+    \item \textbf{Service Layer Pattern}: Para encapsular la lógica de negocio
+    \item \textbf{Singleton Pattern}: Para conexiones a base de datos (Django lo implementa)
+\end{itemize}
+
+Estos patrones son mencionados en libros clásicos como ``Design Patterns'' de Gang of Four y ``Patterns of Enterprise Application Architecture'' de Martin Fowler, y están respaldados por los principios de código limpio de Martin~\cite{martin2008clean}.

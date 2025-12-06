@@ -1,0 +1,41 @@
+\documentclass[sigconf,nonacm]{acmart}
+
+\input{includes/preamble_common}
+\input{includes/preamble_acm}
+
+\AtBeginDocument{\providecommand\BibTeX{{\sc Bib}\TeX}}
+
+	\title[Desarrollo de sistema de software]{Desarrollo de un sistema de software basado en patrones de diseño y buenas prácticas de programación}
+
+
+\author{July Ramos}
+\affiliation{%
+	\institution{SENA - Servicio Nacional de Aprendizaje}
+	\city{Ciudad}
+	\country{Colombia}
+}
+\email{july_ramos@soy.sena.edu.co}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\keywords{buenas prácticas, ingeniería de software, investigación aplicada, reproducibilidad}
+
+\input{sections/01_introduccion}
+\input{sections/02_relacionados}
+\input{sections/03_metodologia}
+\input{sections/04_implementacion}
+\input{sections/05_resultados}
+\input{sections/06_discusion}
+\input{sections/07_conclusiones}
+\input{sections/A1_apendices}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography/references}
+
+\end{document}

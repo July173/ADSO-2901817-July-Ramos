@@ -1,0 +1,58 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/arquitectura_capas.pdf}
+    \caption{Arquitectura en capas del sistema AutoGestión SENA}
+    \label{fig:arquitectura_capas}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/evolucion_proyecto.pdf}
+    \caption{Evolución del proyecto en el tiempo: de caos a código limpio}
+    \label{fig:evolucion_proyecto}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/comparacion_codigo.pdf}
+    \caption{Comparación de complejidad del código antes y después de aplicar patrones}
+    \label{fig:comparacion_codigo}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/tiempos_respuesta.pdf}
+    \caption{Comparación de tiempos de respuesta antes y después de aplicar patrones}
+    \label{fig:tiempos_respuesta}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{graphics/metricas_codigo.pdf}
+    \caption{Métricas de complejidad del código antes y después}
+    \label{fig:metricas_codigo}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{graphics/distribucion_modulos.pdf}
+    \caption{Distribución de funcionalidades por módulo del sistema}
+    \label{fig:distribucion_modulos}
+\end{figure*}
