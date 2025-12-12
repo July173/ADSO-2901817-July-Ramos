@@ -334,6 +334,11 @@ INPUT /opt/texlive/texdir/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT ./graphics/comparacion_codigo.pdf
 INPUT ./graphics/comparacion_codigo.pdf
 INPUT ./graphics/comparacion_codigo.pdf
+INPUT ./sections/04b_pruebas.tex
+INPUT ./sections/04b_pruebas.tex
+INPUT ./sections/04b_pruebas.tex
+INPUT ./sections/04b_pruebas.tex
+INPUT sections/04b_pruebas.tex
 INPUT ./sections/05_resultados.tex
 INPUT ./sections/05_resultados.tex
 INPUT ./sections/05_resultados.tex

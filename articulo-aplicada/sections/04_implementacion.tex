@@ -2,45 +2,165 @@
 
 \subsection{Estructura del Proyecto Backend}
 
-El backend quedó organizado con una estructura modular clara:
+El backend está organizado en \textbf{3 módulos principales} siguiendo el principio de separación de responsabilidades:
+
+\subsubsection{Módulo 1: Security (Seguridad)}
+
+Responsable de autenticación, autorización y gestión de usuarios:
 
 \begin{itemize}
-    \item \textbf{apps/}: Módulos de la aplicación (general, security, assign)
+    \item \textbf{Modelos}: Person, User, Role, Permission, Form, Module, DocumentType, RoleFormPermission, FormModule
+    \item \textbf{10 Repositorios}: Acceso a datos de usuarios, roles, permisos
+    \item \textbf{15 Servicios}: Lógica de autenticación 2FA, recuperación de contraseña, gestión de roles
+    \item \textbf{12 ViewSets}: Endpoints de API REST
+    \item \textbf{Funcionalidades clave}:
     \begin{itemize}
-        \item \textbf{entity/}: Modelos y serializers (DTOs)
-        \item \textbf{repositories/}: Acceso a datos
-        \item \textbf{services/}: Lógica de negocio
-        \item \textbf{views/}: ViewSets (API endpoints)
-    \end{itemize}
-    \item \textbf{core/}: Configuración del proyecto
-    \begin{itemize}
-        \item \textbf{base/}: Clases base reutilizables
-        \item \textbf{settings.py}: Configuración Django
-        \item \textbf{urls.py}: Rutas principales
+        \item Autenticación de dos factores (2FA) por correo
+        \item JWT (JSON Web Tokens) para sesiones
+        \item Sistema de permisos granular (Rol → Formulario → Permiso)
+        \item Recuperación de contraseña con códigos temporales
+        \item Middleware de autenticación JWT
     \end{itemize}
 \end{itemize}
 
-Esta estructura nos permite:
+\subsubsection{Módulo 2: General (Datos Maestros)}
+
+Gestiona entidades generales del sistema:
+
 \begin{itemize}
-    \item \textbf{Modularidad}: Cada app es independiente
-    \item \textbf{Escalabilidad}: Fácil agregar nuevos módulos
-    \item \textbf{Mantenibilidad}: Código organizado por responsabilidades
+    \item \textbf{Modelos}: Regional, Center, Sede, Program, Ficha, Apprentice, Instructor, KnowledgeArea, TypeContract, Notification, LegalDocument, SupportContact
+    \item \textbf{17 Repositorios}: Uno por cada entidad
+    \item \textbf{17 Servicios}: Lógica de negocio específica
+    \item \textbf{18 ViewSets}: Endpoints CRUD completos
+    \item \textbf{Funcionalidades clave}:
+    \begin{itemize}
+        \item Gestión jerárquica: Regional → Centro → Sede
+        \item Control de instructores (límite de aprendices, contratos)
+        \item Sistema de notificaciones con WebSockets (Django Channels)
+        \item Gestión de documentos legales y soporte técnico
+        \item Tareas asíncronas con Celery (desactivación automática de instructores)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Módulo 3: Assign (Asignaciones)}
+
+Núcleo del sistema, gestiona todo el proceso de asignación:
+
+\begin{itemize}
+    \item \textbf{Modelos}: RequestAsignation, AsignationInstructor, VisitFollowing, Message, Enterprise, Boss, HumanTalent, ModalityProductiveStage, AsignationInstructorHistory
+    \item \textbf{10 Repositorios}: Acceso a datos de solicitudes, asignaciones, visitas
+    \item \textbf{10 Servicios}: Lógica compleja de asignación y seguimiento
+    \item \textbf{10 ViewSets}: Endpoints especializados
+    \item \textbf{Funcionalidades clave}:
+    \begin{itemize}
+        \item Flujo completo: Solicitud → Asignación → Visitas → Valoración
+        \item Estados de solicitud: SIN\_ASIGNAR, ASIGNADO, VERIFICANDO, PRE-APROBADO, RECHAZADO, FINALIZADA
+        \item Generación automática de 3 visitas (Concertación, Parcial, Final)
+        \item Sistema de mensajes entre instructor y coordinador
+        \item Historial completo de reasignaciones
+        \item Envío automático de correos (Celery tasks)
+        \item Generación de PDFs de solicitudes
+    \end{itemize}
+\end{itemize}
+
+\textbf{Estructura de cada módulo}:
+
+\begin{itemize}
+    \item \textbf{apps/[module\_name]/}
+    \begin{itemize}
+        \item \textbf{entity/}: Modelos, serializers y enums (10-18 modelos por módulo)
+        \item \textbf{repositories/}: Acceso a datos (uno por cada entidad)
+        \item \textbf{services/}: Lógica de negocio
+        \item \textbf{views/}: ViewSets con endpoints de API
+        \item \textbf{emails/}: Clases para envío de correos
+        \item \textbf{templates/}: HTML para correos
+        \item \textbf{migrations/}: Migraciones de base de datos
+        \item \textbf{urls.py}: Rutas del módulo
+    \end{itemize}
+\end{itemize}
+
+\textbf{Ventajas de esta arquitectura}:
+\begin{itemize}
+    \item \textbf{Modularidad}: Cada módulo es independiente y puede desarrollarse en paralelo
+    \item \textbf{Escalabilidad}: Fácil agregar nuevos módulos sin afectar los existentes
+    \item \textbf{Mantenibilidad}: Código organizado por dominio de negocio
+    \item \textbf{Reutilización}: Repositorios y servicios base heredables
+    \item \textbf{Testing}: Cada capa se puede testear independientemente
 \end{itemize}
 
 \subsection{Estructura del Proyecto Frontend}
 
-El frontend también siguió una arquitectura en capas:
+El frontend sigue una arquitectura por capas con React y TypeScript, totalmente tipado:
+
+\subsubsection{Capa de Configuración y Servicios (src/Api/)}
 
 \begin{itemize}
-    \item \textbf{src/Api/}: Configuración y servicios API
+    \item \textbf{config/ConfigApi.ts}: Centraliza todos los endpoints del backend (más de 100 endpoints)
+    \item \textbf{Services/} (32 archivos): Funciones especializadas para cada entidad
     \begin{itemize}
-        \item \textbf{config/}: Endpoints centralizados
-        \item \textbf{Services/}: Funciones para llamar API
-        \item \textbf{types/}: Interfaces TypeScript
+        \item Ejemplo: \texttt{User.ts}, \texttt{RequestAssignaton.ts}, \texttt{Instructor.ts}
+        \item Cada servicio maneja peticiones HTTP (GET, POST, PUT, DELETE, PATCH)
+        \item Incluye manejo de errores y parsing de respuestas
     \end{itemize}
-    \item \textbf{src/components/}: Componentes React reutilizables
-    \item \textbf{src/hook/}: Custom hooks con lógica de negocio
-    \item \textbf{src/pages/}: Páginas principales de la aplicación
+    \item \textbf{types/}: Interfaces TypeScript fuertemente tipadas
+    \begin{itemize}
+        \item \texttt{entities/}: 14 interfaces de entidades (User, Instructor, RequestAsignation, etc.)
+        \item \texttt{Modules/}: 2 interfaces de módulos complejos
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Capa de Componentes (src/components/)}
+
+Componentes React organizados por funcionalidad:
+
+\begin{itemize}
+    \item \textbf{assing/}: 8 componentes para asignaciones (ModalAssign, AssignTableView, etc.)
+    \item \textbf{ApplicationEvaluation/}: Evaluación de solicitudes por coordinador
+    \item \textbf{ModuleSecurity/}: 28 componentes para roles, permisos, usuarios
+    \item \textbf{Dashboard/}: 6 componentes de tableros (Admin, Instructor, Aprendiz)
+    \item \textbf{Login/}: 11 componentes de autenticación (2FA, recuperación, registro)
+    \item \textbf{MainLayout/}: 7 componentes de estructura (Navbar, Sidebar, Footer)
+    \item \textbf{ui/}: 49 componentes reutilizables (botones, modales, formularios - Radix UI)
+    \item \textbf{Componentes genéricos}: FilterBar, Paginator, ConfirmModal, LoadingOverlay, etc.
+\end{itemize}
+
+\subsubsection{Capa de Lógica (src/hook/)}
+
+Custom hooks que encapsulan lógica reutilizable (24 hooks):
+
+\begin{itemize}
+    \item \texttt{useForms.ts}: Gestión de formularios del sistema
+    \item \texttt{useRoles.tsx}: Lógica de roles y permisos
+    \item \texttt{useInstructorAssignments.ts}: Asignaciones de instructor
+    \item \texttt{useRequestAssignation.ts}: Solicitudes de asignación
+    \item \texttt{useNotification.ts}: Sistema de notificaciones en tiempo real
+    \item \texttt{use-password-reset.ts}: Recuperación de contraseña
+    \item \texttt{useApprenticeDashboard.ts}: Tablero del aprendiz
+    \item \texttt{useGenericFilter.ts}: Filtros reutilizables
+\end{itemize}
+
+\subsubsection{Capa de Presentación (src/pages/)}
+
+Páginas principales de la aplicación (15 páginas):
+
+\begin{itemize}
+    \item \texttt{Index.tsx}: Login y autenticación
+    \item \texttt{Home.tsx}: Dashboard según rol
+    \item \texttt{Assign.tsx}: Asignación de instructores
+    \item \texttt{ApplicationEvaluation.tsx}: Evaluación de solicitudes
+    \item \texttt{Following.tsx}: Seguimiento de visitas
+    \item \texttt{RegisterEP.tsx}: Registro de solicitud de etapa productiva
+    \item \texttt{Admin.tsx}: Panel de administración
+    \item \texttt{Perfil.tsx}: Perfil de usuario
+\end{itemize}
+
+\textbf{Ventajas de esta arquitectura frontend}:
+\begin{itemize}
+    \item \textbf{Tipado completo}: TypeScript previene errores en tiempo de compilación
+    \item \textbf{Reutilización}: Componentes y hooks reutilizables
+    \item \textbf{Separación de responsabilidades}: Lógica separada de presentación
+    \item \textbf{Mantenibilidad}: Fácil localizar y modificar funcionalidades
+    \item \textbf{Testing}: Hooks y componentes testeables independientemente (Jest + React Testing Library)
 \end{itemize}
 
 \subsection{Flujo de una Petición}

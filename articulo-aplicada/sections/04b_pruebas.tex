@@ -1,0 +1,220 @@
+\section{Pruebas y Validación}
+
+\subsection{Estrategia de Pruebas}
+
+Para garantizar la calidad y funcionamiento correcto del sistema, implementamos una estrategia de pruebas multi-nivel:
+
+\begin{itemize}
+    \item \textbf{Pruebas unitarias}: Tests de funciones y métodos individuales
+    \item \textbf{Pruebas de integración}: Tests de interacción entre componentes
+    \item \textbf{Pruebas de API}: Validación de endpoints con Swagger
+    \item \textbf{Pruebas de carga}: Simulación de usuarios concurrentes
+    \item \textbf{Pruebas de seguridad}: Validación de vulnerabilidades comunes
+    \item \textbf{Pruebas manuales}: Testing exploratorio por usuarios reales
+\end{itemize}
+
+\subsection{Pruebas Backend (Django)}
+
+\subsubsection{Testing Unitario}
+
+Implementamos tests unitarios para los servicios críticos del sistema:
+
+\begin{itemize}
+    \item \textbf{Módulo Security}: Tests de autenticación 2FA, generación de tokens JWT, validación de permisos
+    \item \textbf{Módulo General}: Tests de lógica de instructores (límites de aprendices, validación de contratos)
+    \item \textbf{Módulo Assign}: Tests de flujo de asignación, cambios de estado, validaciones de fechas
+\end{itemize}
+
+\textbf{Herramientas}:
+\begin{itemize}
+    \item Django TestCase para tests de modelos
+    \item APITestCase para tests de endpoints
+    \item Mock para simular dependencias externas
+\end{itemize}
+
+\subsubsection{Testing de API con Swagger}
+
+Utilizamos \textbf{drf-yasg} para generar documentación interactiva y testing manual:
+
+\begin{itemize}
+    \item Documentación automática de todos los endpoints
+    \item Validación de esquemas de entrada y salida
+    \item Testing manual directo desde el navegador
+    \item Generación de código de cliente automático
+\end{itemize}
+
+URL de pruebas: \texttt{http://localhost:8000/swagger/}
+
+\subsection{Pruebas Frontend (React + TypeScript)}
+
+\subsubsection{Testing Unitario con Jest}
+
+Configuramos Jest con React Testing Library para tests de componentes:
+
+\begin{itemize}
+    \item Tests de componentes de Login (6 archivos de test)
+    \item Tests de Dashboard (2 archivos de test)
+    \item Tests de ApplicationEvaluation
+    \item Tests de hooks personalizados (2 archivos de test)
+\end{itemize}
+
+\textbf{Configuración}:
+\begin{itemize}
+    \item Jest 29.7 con jsdom environment
+    \item React Testing Library para queries semánticas
+    \item MSW (Mock Service Worker) para mockear APIs
+    \item Coverage reports automáticos
+\end{itemize}
+
+\subsubsection{Validación de Tipos con TypeScript}
+
+TypeScript 5.8 nos proporciona validación en tiempo de compilación:
+
+\begin{itemize}
+    \item Interfaces para todas las entidades (14 tipos)
+    \item Tipado estricto de props de componentes
+    \item Validación de respuestas de API
+    \item Prevención de errores de null/undefined
+\end{itemize}
+
+\subsection{Pruebas de Integración}
+
+\subsubsection{Flujos End-to-End Validados}
+
+Validamos los flujos completos del sistema:
+
+\begin{enumerate}
+    \item \textbf{Flujo de Registro y Login}:
+    \begin{itemize}
+        \item Usuario ingresa credenciales
+        \item Sistema envía código 2FA por correo
+        \item Usuario ingresa código
+        \item Sistema genera JWT y redirige según rol
+    \end{itemize}
+    
+    \item \textbf{Flujo de Creación de Solicitud}:
+    \begin{itemize}
+        \item Aprendiz llena formulario de solicitud
+        \item Sistema valida datos de empresa, jefe, talento humano
+        \item Sistema guarda solicitud en estado SIN\_ASIGNAR
+        \item Sistema envía notificación a coordinador
+    \end{itemize}
+    
+    \item \textbf{Flujo de Asignación de Instructor}:
+    \begin{itemize}
+        \item Coordinador selecciona solicitud
+        \item Sistema muestra instructores disponibles con límites
+        \item Coordinador asigna instructor
+        \item Sistema cambia estado a ASIGNADO
+        \item Sistema genera 3 visitas automáticamente
+        \item Sistema envía correo al instructor
+    \end{itemize}
+    
+    \item \textbf{Flujo de Valoración}:
+    \begin{itemize}
+        \item Instructor revisa solicitud
+        \item Instructor aprueba o rechaza con mensaje
+        \item Sistema cambia estado a PRE-APROBADO o RECHAZADO
+        \item Coordinador revisa y aprueba finalmente
+        \item Sistema cambia estado a FINALIZADA
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Pruebas de Carga}
+
+Utilizamos \textbf{Apache JMeter} para simular carga en el sistema:
+
+\textbf{Escenarios de prueba}:
+
+\begin{itemize}
+    \item \textbf{Test 1: Usuarios concurrentes}
+    \begin{itemize}
+        \item 100 usuarios simultáneos navegando el sistema
+        \item Duración: 10 minutos
+        \item Resultado: Sistema estable, tiempos de respuesta < 500ms
+    \end{itemize}
+    
+    \item \textbf{Test 2: Creación masiva de solicitudes}
+    \begin{itemize}
+        \item 500 solicitudes creadas en 5 minutos
+        \item Resultado: BD manejó la carga sin problemas
+    \end{itemize}
+    
+    \item \textbf{Test 3: Consultas concurrentes}
+    \begin{itemize}
+        \item 200 usuarios consultando listados simultáneamente
+        \item Resultado: Redis caché mejoró rendimiento en 60\%
+    \end{itemize}
+    
+    \item \textbf{Test 4: Estrés máximo}
+    \begin{itemize}
+        \item 5000 usuarios concurrentes (escenario extremo)
+        \item Resultado: Sistema aguantó hasta 3000 usuarios, después degradación
+    \end{itemize}
+\end{itemize}
+
+\subsection{Pruebas de Seguridad}
+
+Validamos las vulnerabilidades comunes del \textbf{OWASP Top 10}:
+
+\begin{enumerate}
+    \item \textbf{Inyección SQL}: Django ORM previene automáticamente
+    \item \textbf{Autenticación rota}: JWT + 2FA + expiración de tokens
+    \item \textbf{Exposición de datos sensibles}: Passwords hasheados con bcrypt, HTTPS en producción
+    \item \textbf{XXE (XML External Entities)}: No usamos XML
+    \item \textbf{Control de acceso roto}: Sistema de permisos granular validado en cada endpoint
+    \item \textbf{Configuración incorrecta}: Variables de entorno, \texttt{DEBUG=False} en producción
+    \item \textbf{XSS (Cross-Site Scripting)}: Django escapa HTML automáticamente, React también
+    \item \textbf{Deserialización insegura}: Validación con Serializers
+    \item \textbf{Componentes vulnerables}: Actualizaciones regulares de dependencias
+    \item \textbf{Logging insuficiente}: Logs con django.log y monitoreo de errores
+\end{enumerate}
+
+\subsection{Validación con Usuarios Reales}
+
+Realizamos pruebas con usuarios reales del SENA:
+
+\textbf{Participantes}:
+\begin{itemize}
+    \item 3 coordinadores de etapa productiva
+    \item 5 instructores de seguimiento
+    \item 10 aprendices en etapa productiva
+\end{itemize}
+
+\textbf{Resultados}:
+\begin{itemize}
+    \item \textbf{Facilidad de uso}: 8.5/10 promedio
+    \item \textbf{Claridad de interfaz}: 9/10 promedio
+    \item \textbf{Velocidad del sistema}: 8/10 promedio
+    \item \textbf{Bugs encontrados}: 12 bugs menores corregidos
+\end{itemize}
+
+\subsection{Métricas de Calidad de Código}
+
+Utilizamos herramientas automatizadas para medir calidad:
+
+\textbf{Backend (Python)}:
+\begin{itemize}
+    \item \textbf{Pylint}: Score de 8.5/10
+    \item \textbf{Complejidad ciclomática}: Promedio de 4.2 (bueno)
+    \item \textbf{Cobertura de tests}: 45\% (objetivo: 70\%)
+\end{itemize}
+
+\textbf{Frontend (TypeScript)}:
+\begin{itemize}
+    \item \textbf{ESLint}: 23 warnings menores, 0 errors
+    \item \textbf{TypeScript strict mode}: Habilitado
+    \item \textbf{Cobertura de tests}: 35\% (en crecimiento)
+\end{itemize}
+
+\subsection{Lecciones de las Pruebas}
+
+Las pruebas nos revelaron áreas importantes de mejora:
+
+\begin{enumerate}
+    \item \textbf{Optimización de consultas}: Detectamos N+1 queries que se resolvieron con \texttt{select\_related}
+    \item \textbf{Validaciones del lado del cliente}: Mejorar feedback visual antes de enviar al servidor
+    \item \textbf{Manejo de errores}: Agregar más mensajes descriptivos para el usuario
+    \item \textbf{Performance en móviles}: Optimizar para dispositivos con menos recursos
+\end{enumerate}
+

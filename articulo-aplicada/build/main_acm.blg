@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2025)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: build/main_acm.aux
+The top-level auxiliary file: main_acm.aux
 The style file: ACM-Reference-Format.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -19,7 +19,7 @@ Warning--page numbers missing in both pages and numpages fields in mercado2019re
 Warning--page numbers missing in both pages and numpages fields in pinero2021buenas
 You've used 4 entries,
             6273 wiz_defined-function locations,
-            1545 strings with 19082 characters,
+            1545 strings with 19070 characters,
 and the built_in function-call counts, 3915 in all, are:
 = -- 514
 > -- 118

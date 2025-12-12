@@ -19,29 +19,103 @@ Esta arquitectura nos permitió:
     \item \textbf{Mantener el código limpio}: Sin mezclar lógica de diferentes niveles
 \end{itemize}
 
-\subsection{Tecnologías Utilizadas}
+\subsection{Selección de Tecnologías}
 
-Para que esto funcionara, usamos tecnologías modernas y potentes:
+\subsubsection{Decisión del Framework Backend: Django vs FastAPI}
+
+Una de las decisiones más importantes fue la elección del framework para el backend. Evaluamos dos opciones principales: Django y FastAPI.
+
+\textbf{¿Por qué Django y no FastAPI?}
+
+Aunque FastAPI es más moderno y rápido, elegimos Django 4.2 por las siguientes razones:
+
+\begin{itemize}
+    \item \textbf{ORM robusto}: Django ORM es más maduro y estable para proyectos complejos con múltiples relaciones entre entidades
+    \item \textbf{Admin panel integrado}: El panel de administración de Django nos permitió gestionar datos rápidamente durante el desarrollo
+    \item \textbf{Seguridad por defecto}: Django incluye protección contra CSRF, XSS, SQL Injection y otros ataques comunes
+    \item \textbf{Ecosistema maduro}: Bibliotecas como Django REST Framework, Celery Beat y django-cors-headers están muy bien integradas
+    \item \textbf{Documentación extensa}: Django tiene 18 años de desarrollo y una comunidad enorme
+    \item \textbf{Escalabilidad empresarial}: Usado por Instagram, Spotify, YouTube - probado en producción a gran escala
+    \item \textbf{Experiencia del equipo}: Teníamos más experiencia con Django, lo que redujo la curva de aprendizaje
+\end{itemize}
+
+FastAPI hubiera sido ideal para microservicios o APIs de alto rendimiento puro, pero para un sistema integral con autenticación compleja, roles, permisos y múltiples módulos interdependientes, Django fue la mejor opción.
+
+\subsection{Stack Tecnológico Completo}
 
 \textbf{Backend}:
 \begin{itemize}
-    \item \textbf{Python 3.11}: Lenguaje principal
-    \item \textbf{Django 4.2}: Framework web
-    \item \textbf{Django REST Framework}: Para crear la API REST
-    \item \textbf{MySQL 8.0}: Base de datos relacional
-    \item \textbf{Celery}: Para tareas asíncronas (envío de correos, notificaciones)
-    \item \textbf{Redis}: Como broker para Celery y caché
-    \item \textbf{Docker}: Para containerización
+    \item \textbf{Python 3.11}: Lenguaje principal con mejoras de rendimiento
+    \item \textbf{Django 4.2.23}: Framework web robusto y escalable
+    \item \textbf{Django REST Framework 3.16}: Creación de API RESTful con serialización automática
+    \item \textbf{djangorestframework-simplejwt 5.5}: Autenticación JWT (JSON Web Tokens)
+    \item \textbf{MySQL 8.0}: Base de datos relacional con soporte para transacciones ACID
+    \item \textbf{Celery 5.5}: Sistema de tareas asíncronas distribuidas
+    \item \textbf{Redis 5.2}: Broker de mensajes para Celery y sistema de caché
+    \item \textbf{Channels y Daphne}: WebSockets para notificaciones en tiempo real
+    \item \textbf{drf-yasg 1.21}: Generación automática de documentación Swagger/OpenAPI
+    \item \textbf{Docker y Docker Compose}: Containerización para entornos consistentes
 \end{itemize}
 
 \textbf{Frontend}:
 \begin{itemize}
-    \item \textbf{React 18}: Biblioteca de UI
-    \item \textbf{TypeScript}: Para tipado estático
-    \item \textbf{Vite}: Build tool moderno
-    \item \textbf{Tailwind CSS}: Framework de estilos
-    \item \textbf{Fetch API}: Para comunicación con el backend
+    \item \textbf{React 18.3}: Biblioteca de UI con renderizado eficiente
+    \item \textbf{TypeScript 5.8}: Tipado estático para prevenir errores
+    \item \textbf{Vite 5.4}: Build tool ultra-rápido con HMR (Hot Module Replacement)
+    \item \textbf{Tailwind CSS 3.4}: Framework de utilidades CSS
+    \item \textbf{Radix UI}: Componentes accesibles y sin estilos predefinidos
+    \item \textbf{React Hook Form 7.61}: Gestión de formularios con validación
+    \item \textbf{Zod 3.25}: Validación de esquemas TypeScript-first
+    \item \textbf{React Router 6.30}: Navegación SPA (Single Page Application)
+    \item \textbf{Fetch API}: Peticiones HTTP nativas del navegador
 \end{itemize}
+
+\textbf{Herramientas de Desarrollo}:
+\begin{itemize}
+    \item \textbf{Git y GitHub}: Control de versiones
+    \item \textbf{ESLint y Pylint}: Linters para mantener calidad de código
+    \item \textbf{Jest}: Testing unitario en frontend
+    \item \textbf{Swagger UI}: Documentación interactiva de API
+    \item \textbf{MySQL Workbench}: Diseño y administración de base de datos
+\end{itemize}
+
+\subsection{Metodología de Desarrollo: Scrum}
+
+Para gestionar el desarrollo del proyecto, utilizamos la metodología ágil \textbf{Scrum} adaptada a nuestro contexto educativo.
+
+\textbf{Configuración del equipo}:
+\begin{itemize}
+    \item \textbf{Duración total}: 4 meses (aproximadamente 16 semanas)
+    \item \textbf{Número de sprints}: 7 sprints
+    \item \textbf{Duración de sprints}: 2 semanas por sprint (excepto el último de 2 semanas)
+    \item \textbf{Equipo}: 2-3 desarrolladores + 1 instructor como Product Owner
+\end{itemize}
+
+\textbf{Distribución de sprints}:
+
+\begin{enumerate}
+    \item \textbf{Sprint 1-2}: Configuración inicial, diseño de base de datos, módulo de seguridad básico
+    \item \textbf{Sprint 3-4}: Módulo general (instructores, aprendices, fichas, programas)
+    \item \textbf{Sprint 5-6}: Módulo de asignaciones (solicitudes, asignación de instructores, estados)
+    \item \textbf{Sprint 7}: Refinamiento, corrección de bugs, documentación y despliegue
+\end{enumerate}
+
+\textbf{Ceremonias Scrum implementadas}:
+\begin{itemize}
+    \item \textbf{Sprint Planning}: Planificación al inicio de cada sprint
+    \item \textbf{Daily Standups}: Reuniones diarias de 15 minutos (virtuales)
+    \item \textbf{Sprint Review}: Demo al instructor/coordinador al final del sprint
+    \item \textbf{Sprint Retrospective}: Reflexión sobre qué mejorar
+\end{itemize}
+
+\textbf{Herramientas de gestión}:
+\begin{itemize}
+    \item \textbf{Trello/Jira}: Tablero Kanban para tareas
+    \item \textbf{GitHub Issues}: Seguimiento de bugs y features
+    \item \textbf{GitHub Projects}: Vista de proyecto integrada con repositorio
+\end{itemize}
+
+Esta metodología nos permitió tener entregas incrementales, recibir feedback constante y ajustar prioridades según las necesidades reales del SENA.
 
 \subsection{Patrones de Diseño Aplicados}
 
